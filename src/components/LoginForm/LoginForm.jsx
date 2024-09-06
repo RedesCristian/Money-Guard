@@ -5,8 +5,8 @@ function LoginForm() {
   const navigate = useNavigate();
 
   const handleRegisterClick = e => {
-    e.preventDefault(); // Previi comportamentul implicit al butonului
-    navigate('/register'); // Redirecționezi către componenta RegistrationForm
+    e.preventDefault();
+    navigate('/register');
   };
 
   return (
