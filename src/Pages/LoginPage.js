@@ -1,13 +1,29 @@
+// Example in LoginPage.js
 import React from 'react';
-import LoginForm from '../components/LoginForm/LoginForm.jsx';
-// import './RegistrationPage.css';
+import { useNavigate } from 'react-router-dom';
 
 function LoginPage() {
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    navigate('/Money-Guard/dashboard/home'); // Include the basename here
+  };
+
   return (
-    <div className="registration-page">
-      <h1>Money Guard</h1>
-      <LoginForm />
-    </div>
+    <form onSubmit={handleLogin}>
+      <label>Email</label>
+      <input type="email" />
+
+      <label>Password</label>
+      <input type="password" />
+
+      <button type="submit">LOG IN</button>
+
+      {/* Buton pentru Register */}
+      <button type="button" onClick={() => navigate('/Money-Guard/register')}>
+        REGISTER
+      </button>
+    </form>
   );
 }
 
