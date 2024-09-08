@@ -13,7 +13,10 @@ function RegistrationPage() {
     <div className="registration-page">
       <h1>Money Guard</h1>
 
-      <RegistrationForm onPasswordChange={handlePasswordChange} />
+      <RegistrationForm
+        password={password}
+        onPasswordChange={handlePasswordChange}
+      />
 
       <PasswordStrengthBar password={password} />
     </div>
