@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/Money-Guard/static/js/main.f03285a3.js",
+    "main.js": "/Money-Guard/static/js/main.5bec281b.js",
     "index.html": "/Money-Guard/index.html",
-    "main.f03285a3.js.map": "/Money-Guard/static/js/main.f03285a3.js.map"
+    "main.5bec281b.js.map": "/Money-Guard/static/js/main.5bec281b.js.map"
   },
   "entrypoints": [
-    "static/js/main.f03285a3.js"
+    "static/js/main.5bec281b.js"
   ]
 }
