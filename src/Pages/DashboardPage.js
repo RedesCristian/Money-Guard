@@ -2,6 +2,7 @@ import React from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
 import HomePage from '../Pages/HomePage';
 import StatisticsPage from '../Pages/StatisticsPage';
+import ModalAddTransaction from 'components/AddTransactionForm/AddTransactionForm';
 
 const DashboardPage = () => {
   return (
@@ -20,7 +21,9 @@ const DashboardPage = () => {
         <Route path="home" element={<HomePage />} />
         <Route path="statistics" element={<StatisticsPage />} />
       </Routes>
+      <div><ModalAddTransaction /></div>
     </div>
+    
   );
 };
 
