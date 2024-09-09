@@ -1,9 +1,10 @@
-import styles from './Currency.module.css';
+import styles from './CurrencyPage.module.css';
 import axios from 'axios';
+
 import React, { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 
-const Currency = () => {
+const CurrencyPage = () => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
@@ -59,8 +60,20 @@ const Currency = () => {
     query: '(min-width: 1280px)',
   });
 
+  const [forcedLoading, setForcedLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => setForcedLoading(false), 1500);
+  }, [forcedLoading]);
+
+  if (forcedLoading) {
+    return;
+  }
+
+  const animation = 'animate__animated  animate__fadeIn animate__slow';
+
   return (
-    <div className={styles.tablewrapper}>
+    <div className={`${styles.tablewrapper} ${animation}`}>
       <table className={styles.table}>
         <thead className={styles.tablehead}>
           <tr>
@@ -216,7 +229,7 @@ const Currency = () => {
         ''
       )}
       {isDesktop ? (
-        <div className={styles.tablegraph} gbp={rateBuyGBP}>
+        <div className={styles.tablegraph} $gbp={rateBuyGBP}>
           <div className={styles.gbp}>{rateBuyGBP}</div>
           <div className={styles.eur}>{rateBuyEUR}</div>
           <svg
@@ -287,4 +300,4 @@ const Currency = () => {
   );
 };
 
-export default Currency;
+export default CurrencyPage;
