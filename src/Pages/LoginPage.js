@@ -1,16 +1,11 @@
 import React, { useState } from 'react';
-import Modal from 'react-modal';
 import LoginForm from '../components/LoginForm/LoginForm.jsx'; // Importăm componenta LoginForm
 import Notiflix from 'notiflix';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { ClipLoader } from 'react-spinners'; // Importăm spinner-ul
 
-// Setăm aria-hidden pentru accesibilitate
-Modal.setAppElement('#root');
-
 function LoginPage() {
-  const [isLoginModalOpen, setLoginModalOpen] = useState(true); // Deschidem modalul la pornire
   const [isLoading, setIsLoading] = useState(false); // Starea pentru spinner
   const navigate = useNavigate();
 
@@ -35,8 +30,7 @@ function LoginPage() {
       // Notificare de succes
       Notiflix.Notify.success('Login successful! Redirecting to dashboard...');
 
-      // Închidem modalul și spinner-ul
-      setLoginModalOpen(false);
+      // Oprim spinner-ul
       setIsLoading(false);
 
       // Redirecționare către dashboard
@@ -64,40 +58,22 @@ function LoginPage() {
 
   return (
     <div>
-      {/* Modal pentru login */}
-      <Modal
-        isOpen={isLoginModalOpen}
-        contentLabel="Login Modal"
-        style={{
-          content: {
-            top: '50%',
-            left: '50%',
-            right: 'auto',
-            bottom: 'auto',
-            marginRight: '-50%',
-            transform: 'translate(-50%, -50%)',
-          },
-        }}
-      >
-        <h2>Login</h2>
-
-        {isLoading ? (
-          // Afișăm spinner-ul dacă este în proces de autentificare
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              height: '100px',
-            }}
-          >
-            <ClipLoader color={'#123abc'} loading={isLoading} size={50} />
-          </div>
-        ) : (
-          // Componenta LoginForm când nu se încarcă
-          <LoginForm onSubmit={handleLoginSubmit} />
-        )}
-      </Modal>
+      {isLoading ? (
+        // Afișăm spinner-ul dacă este în proces de autentificare
+        <div
+        // style={{
+        //   display: 'flex',
+        //   justifyContent: 'center',
+        //   alignItems: 'center',
+        //   height: '100px',
+        // }}
+        >
+          <ClipLoader color={'#123abc'} loading={isLoading} size={50} />
+        </div>
+      ) : (
+        // Componenta LoginForm când nu se încarcă
+        <LoginForm onSubmit={handleLoginSubmit} />
+      )}
     </div>
   );
 }
