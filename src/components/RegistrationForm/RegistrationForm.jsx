@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import Notiflix from 'notiflix';
 import { registerUser } from 'axiosFunction';
 import { setToken, setUser } from '../../redux/authSlice';
+import styles from './RegistrationForm.module.css'; // Importă fișierul CSS module
 
 const RegistrationForm = ({ password, onPasswordChange }) => {
   const dispatch = useDispatch();
@@ -46,85 +47,116 @@ const RegistrationForm = ({ password, onPasswordChange }) => {
     }
   };
 
+  const handleLoginClick = () => {
+    navigate('/Money-Guard/login');
+  };
+
   return (
-    <Formik
-      initialValues={{
-        username: '',
-        email: '',
-        password: '',
-        confirmPassword: '',
-      }}
-      validationSchema={validationSchema}
-      onSubmit={handleRegister}
-    >
-      {({ values, handleChange, isSubmitting }) => (
-        <Form>
-          <div>
-            <label htmlFor="username">Nume de utilizator</label>
-            <Field
-              type="text"
-              name="username"
-              placeholder="Introduceți numele de utilizator"
-            />
-            <ErrorMessage
-              name="username"
-              component="div"
-              style={{ color: 'red' }}
-            />
-          </div>
+    <div className={styles.registrationContainer}>
+      <Formik
+        initialValues={{
+          username: '',
+          email: '',
+          password: '',
+          confirmPassword: '',
+        }}
+        validationSchema={validationSchema}
+        onSubmit={handleRegister}
+      >
+        {({ values, handleChange, isSubmitting }) => (
+          <Form className={styles.registrationForm}>
+            <div className={styles.inputGroup}>
+              <label className={styles.inputLabel} htmlFor="username">
+                Nume de utilizator
+              </label>
+              <Field
+                type="text"
+                name="username"
+                placeholder="Introduceți numele de utilizator"
+                className={styles.inputField}
+              />
+              <ErrorMessage
+                name="username"
+                component="div"
+                className={styles.error}
+              />
+            </div>
 
-          <div>
-            <label htmlFor="email">Email</label>
-            <Field
-              type="email"
-              name="email"
-              placeholder="Introduceți emailul"
-            />
-            <ErrorMessage
-              name="email"
-              component="div"
-              style={{ color: 'red' }}
-            />
-          </div>
+            <div className={styles.inputGroup}>
+              <label className={styles.inputLabel} htmlFor="email">
+                Email
+              </label>
+              <Field
+                type="email"
+                name="email"
+                placeholder="Introduceți emailul"
+                className={styles.inputField}
+              />
+              <ErrorMessage
+                name="email"
+                component="div"
+                className={styles.error}
+              />
+            </div>
 
-          <div>
-            <label htmlFor="password">Parolă</label>
-            <Field
-              type="password"
-              name="password"
-              placeholder="Setați parola"
-              onChange={e => {
-                handleChange(e);
-                onPasswordChange(e.target.value); // Actualizează parola în părintele
-              }}
-            />
-            <ErrorMessage
-              name="password"
-              component="div"
-              style={{ color: 'red' }}
-            />
-          </div>
+            <div className={styles.inputGroup}>
+              <label className={styles.inputLabel} htmlFor="password">
+                Password
+              </label>
+              <Field
+                type="password"
+                name="password"
+                placeholder="Setați parola"
+                onChange={e => {
+                  handleChange(e);
+                  onPasswordChange(e.target.value); // Actualizează parola în părintele
+                }}
+                className={styles.inputField}
+              />
+              <ErrorMessage
+                name="password"
+                component="div"
+                className={styles.error}
+              />
+            </div>
 
-          <div>
-            <label htmlFor="confirmPassword">Confirmare Parolă</label>
-            <Field
-              type="password"
-              name="confirmPassword"
-              placeholder="Confirmați parola"
-            />
-            <ErrorMessage
-              name="confirmPassword"
-              component="div"
-              style={{ color: 'red' }}
-            />
-          </div>
+            <div className={styles.inputGroup}>
+              <label className={styles.inputLabel} htmlFor="confirmPassword">
+                Confirm password
+              </label>
+              <Field
+                type="password"
+                name="confirmPassword"
+                placeholder="Confirmați parola"
+                className={styles.inputField}
+              />
+              <ErrorMessage
+                name="confirmPassword"
+                component="div"
+                className={styles.error}
+              />
+            </div>
 
-          <button type="submit" disabled={isSubmitting}>
-            {isSubmitting ? 'Se înregistrează...' : 'Înregistrează-te'}
-          </button>
-        </Form>
-      )}
-    </Formik>
+            <div className={styles.buttonGroup}>
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className={styles.submitButton}
+              >
+                {isSubmitting ? 'Se înregistrează...' : 'Register'}
+              </button>
+              <button
+                type="button"
+                onClick={handleLoginClick}
+                className={styles.backButton}
+              >
+                LOG IN
+              </button>
+            </div>
+          </Form>
+        )}
+      </Formik>
+    </div>
   );
 };
 
